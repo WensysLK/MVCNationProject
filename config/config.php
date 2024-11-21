@@ -1,6 +1,6 @@
 <?php
 // Base URL of the application
-define('BASE_URL', 'http://localhost/projects/NewPHPNation/public/');
+define('BASE_URL', 'http://localhost/projects/MVCNationProject/public/');
 
 
 

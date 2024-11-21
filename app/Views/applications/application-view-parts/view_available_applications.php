@@ -56,7 +56,7 @@
                         <td><?php echo $applicationPhone; ?></td>
                         <td><?php echo $applicationPassport; ?></td>
                         <td>
-                        <form action="profile-view/application-profile-edit.php?client_id=<?php echo $applicationID;?>" style="display: inline-block;" method="POST">
+                        <form action="<?php echo BASE_URL; ?>application/profile_view?client_id=<?php echo $applicationID;?>" style="display: inline-block;" method="POST">
                                 <input type="hidden" name="applicationID" value="<?php echo $applicationID; ?>">
                                 <button type="submit" class="btn btn-primary btn-sm lni lni-pencil">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2">

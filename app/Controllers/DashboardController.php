@@ -20,7 +20,7 @@ class DashboardController extends Controller
             header("Location: /login");
             exit();
         }
-        $this->view('admin/dashboard', ['user' => $_SESSION['user']]);
+        $this->view('admin/dashboard', ['user' => $_SESSION['session_name']]);
     }
 
     /**

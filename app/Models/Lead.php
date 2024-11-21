@@ -35,4 +35,43 @@ class Lead extends Model
 //       $stmt->execute();
 //       return $stmt->get_result();
    }
+
+   public function updateLead($lead_id,$name, $lastname, $nic, $passport, $email, $phone, $source){
+       $status="new";
+//       var_dump($lead_id,$name, $lastname, $nic, $passport, $email, $phone, $source);die();
+       $sql = "UPDATE leads SET name = ?,lname=?,nic=?,passportNumber=?, email = ?, phone = ?, source = ?, status = ? WHERE id = ?";
+
+       // Prepare the statement
+       if ($stmt = $this->db->prepare($sql)) {
+           // Bind the parameters
+           $stmt->bind_param('ssssssssi', $name,$lastname,$nic,$passport, $email, $phone, $source, $status, $lead_id);
+
+           // Execute the query
+           $stmt->execute();
+           return $stmt->get_result();
+
+           // Close the statement
+
+       } else {
+           // Handle preparation error
+           return "Error preparing the query: " . $this->db->error;
+       }
+   }
+
+   public function deleteLead($clientId){
+       $sql = "UPDATE leads SET softdeletStatus = 0 WHERE id = ?";
+
+       $stmt = $this->db->prepare($sql);
+       if ($stmt) {
+           $stmt->bind_param('i', $clientId);
+
+           $stmt->execute();
+           return $stmt->get_result();
+
+
+       } else {
+           return "Error preparing the soft delete statement: " . $this->db->error;
+       }
+   }
+
 }

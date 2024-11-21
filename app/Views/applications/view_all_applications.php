@@ -196,7 +196,7 @@
             });
             // Function to fetch application count
             function fetchavailappCount() {
-                alert("hello");
+                // alert("hello");
                 $.ajax({
                     url: 'get_available_app_total_count', // The PHP script
                     method: 'GET',

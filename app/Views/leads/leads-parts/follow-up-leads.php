@@ -40,7 +40,7 @@ $result = $conn->query($sql);
                         <td><?php echo $row['source']; ?></td>
                         <td><?php echo $row['status']; ?></td>
                         <td>
-                        <a href="followups/followup.php?lead_id=<?php echo $row['id']; ?>"><button
+                        <a href="<?php echo BASE_URL; ?>lead/update_follupstatus?lead_id=<?php echo $row['id']; ?>"><button
                         class="btn btn-sm btn-info">Follow Up</button></a> |
                             <!-- Register Button that opens Registration Modal -->
                             <a class="btn btn-sm btn-primary" data-bs-toggle="modal"
@@ -51,7 +51,7 @@ $result = $conn->query($sql);
                                 data-bs-target="#editLeadModal-<?php echo $row['id']; ?>">Edit</a>
 
                             <!-- Delete Button with Confirmation -->
-                            <form method="POST" action="funtions/delete-lead.php" style="display:inline;">
+                            <form method="POST" action="<?php echo BASE_URL; ?>lead/delete_lead" style="display:inline;">
                                 <input type="hidden" name="clientId" value="<?php echo $row['id']; ?>">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                     onclick="return confirm('Are you sure?');">
@@ -66,7 +66,7 @@ $result = $conn->query($sql);
              aria-labelledby="registerModalLabel-<?php echo $row['id']; ?>" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form id="registrationForm" method="post" action="funtions/register_lead.php">
+                    <form id="registrationForm" method="post" action="<?php echo BASE_URL; ?>lead/registerLead">
                         <div class="modal-header">
                             <h5 class="modal-title" id="registerModalLabel-<?php echo $row['id']; ?>">Register Lead</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -150,7 +150,7 @@ $result = $conn->query($sql);
                         aria-labelledby="editLeadModalLabel-<?php echo $row['id']; ?>" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action="funtions/update-lead.php" method="POST">
+                                <form action="<?php echo BASE_URL; ?>lead/update_leadNew" method="POST">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editLeadModalLabel-<?php echo $row['id']; ?>">Edit
                                             Lead</h5>

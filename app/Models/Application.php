@@ -91,5 +91,39 @@ class Application extends Model
         $stmt->execute();
         return $stmt->get_result();
     }
+    public function registerLead($applicantTitle,$applicantFname,$applicantMname,$applicantLname,$applicantDob,$passportNumber,$nicNumber,$leadId,$source){
+        $profile_image="../../uploads/img/fallback-image.png";
+        $applicantPassdate=date("Y-m-d");;
+        $insertQuery = "INSERT INTO Applications (profile_image,applicantTitle, applicatFname, applicantMname, applicantLname, applicantDob, applicantPassno, applicantNICno,applicantPassdate, how_foun_us, leadId)
+                    VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        if ($stmt = $this->db->prepare($insertQuery)) {
+            // Bind parameters and execute the insert query
+            $stmt->bind_param("ssssssssssi", $profile_image,$applicantTitle, $applicantFname, $applicantMname, $applicantLname, $applicantDob, $passportNumber, $nicNumber, $applicantPassdate,$source, $leadId);
+
+            if ($stmt->execute()) {
+                // Check if the insert was successful using affected_rows
+                if ($this->db->affected_rows > 0) {
+                    // Update the lead status to "registered"
+                    $updateQuery = "UPDATE leads SET status = 'registered' WHERE id = ?";
+                    $updateStmt = $this->db->prepare($updateQuery);
+                    $updateStmt->bind_param("i", $leadId);
+                    $updateStmt->execute();
+
+                    // Redirect to the next page
+                    return $stmt->get_result();
+                } else {
+                    return "Error: Unable to insert application data.";
+                }
+            } else {
+                return "Error: Execution failed - " . $stmt->error;
+            }
+
+            // Close the statement
+
+        } else {
+            return "Error: Could not prepare the insert statement - " . $this->db->error;
+        }
+    }
 
 }

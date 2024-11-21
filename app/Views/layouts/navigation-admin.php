@@ -25,7 +25,7 @@
             <li class="nav-item with-sub">
                 <a href="" class="nav-link"><i data-feather="package"></i> Applications</a>
                 <ul class="navbar-menu-sub">
-                    <li class="nav-sub-item"><a href="<?php echo $baseUrl; ?>/applications/view_all_applications.php"
+                    <li class="nav-sub-item"><a href="<?php echo BASE_URL; ?>application/index"
                             class="nav-sub-link"><i data-feather="users"></i>View All</a></li>
                     <li class="nav-sub-item"><a href="#" class="nav-sub-link"><i data-feather="users"></i>Contacts</a>
                     </li>

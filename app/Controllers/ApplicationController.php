@@ -4,7 +4,7 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-//        session_start();
+        session_start();
 //        if (!isset($_SESSION['user'])) {
 //            header("Location: /login");
 //            exit();
@@ -103,5 +103,11 @@ class ApplicationController extends Controller
 
         header('Content-Type: application/json');
         echo json_encode($response);
+    }
+
+    public function profileView(){
+        if (isset($_GET['client_id'])) {
+            var_dump($_GET['client_id']);die();
+        }
     }
 }
