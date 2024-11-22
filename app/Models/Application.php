@@ -126,4 +126,27 @@ class Application extends Model
         }
     }
 
+    public function getProfileDetails($client_id){
+        $sql = "SELECT * FROM applications WHERE applicationID=$client_id"; // Ensure `lead_id` exists in the `leads` table
+        $res = mysqli_query($this->db,$sql);
+        if($row = mysqli_fetch_assoc($res)) {
+
+            $sqlContractStatus = "SELECT `interviewStatus`,`medicalStatus`, `EnjazSatus`, `MuzanedStatus`, `fprintStatus`, `BeauroStatus`, `contractType`, `ContractStartus`, `contractCreated`
+                                                    FROM `contract_details` 
+                                                    WHERE `applicationID` =$client_id  LIMIT 1";
+
+
+            $rese = mysqli_query($this->db,$sqlContractStatus);
+//            $stmtContract = $this->db->prepare($sqlContractStatus);
+//            $stmtContract->bind_param("i", $client_id);
+//            $stmtContract->execute();
+            $resultContract = mysqli_fetch_assoc($rese);
+//            var_dump($resultContract);die();
+            $data=[$resultContract,$row];
+//            var_dump($data[1]);die();
+            return $data;
+        }else{
+            return $row;
+        }
+    }
 }

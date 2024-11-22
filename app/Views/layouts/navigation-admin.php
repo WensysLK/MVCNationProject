@@ -34,7 +34,7 @@
 
                 </ul>
             </li>
-            <li class="nav-item"><a href="<?php echo $baseUrl; ?>/Contracts/view_all_Contracts.php" class="nav-link"><i
+            <li class="nav-item"><a href="<?php echo BASE_URL; ?>contracts/index" class="nav-link"><i
                         data-feather="box"></i> Contracts</a>
             </li>
             <li class="nav-item with-sub">

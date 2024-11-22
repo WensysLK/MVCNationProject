@@ -1,12 +1,13 @@
-<?php include('../layouts/header.php');
+<?php include dirname(__DIR__, 2) . "/views/layouts/header.php";
+
 
 // Initialize variables to handle cases where session data might be missing
 $applicantTitle = $applicantFname = $applicantMname = $applicantLname = $applicantDob = $passportNumber = $nicNumber = '';
 
 // Check if session data exists
-if (isset($_SESSION['form_data'])) {
+if (isset($data)) {
     // Retrieve form data from session
-    $form_data = $_SESSION['form_data'];
+    $form_data = $data;
 
     // Safely assign session data to variables
     $applicantTitle = isset($form_data['applicantTitle']) ? $form_data['applicantTitle'] : '';
@@ -102,8 +103,9 @@ if (isset($_SESSION['form_data'])) {
 
 <body>
 
-    <?php include('../layouts/navigation-admin.php');
-    include('form-parts/control-scripts/control-scripts.php');
+    <?php include dirname(__DIR__, 2) . "/views/layouts/navigation-admin.php";
+    include dirname(__DIR__, 2) . "/views/application/form-parts/control-scripts/control-scripts.php";
+
     ?>
     <div class="content content-fixed bd-b">
         <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
@@ -156,7 +158,7 @@ if (isset($_SESSION['form_data'])) {
                     </li>
                 </ul>
 
-                <form id="multiStepForm" action="form-functions/main_insert.php" method="POST"
+                <form id="multiStepForm" action="<?php echo BASE_URL; ?>form-functions/main_insert.php" method="POST"
                     enctype="multipart/form-data">
                     <!-- Step 1: Personal Information -->
                     <div class="step active" id="step1">
@@ -253,7 +255,7 @@ if (isset($_SESSION['form_data'])) {
             </div>
         </div>
     </div>
-    <?php include('../layouts/footer.php'); ?>
+    <?php include dirname(__DIR__, 2) . "/views/layouts/footer.php";  ?>
     <!--Form Multistep Form-->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
